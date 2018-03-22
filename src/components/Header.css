@@ -1,0 +1,13 @@
+:root{
+    --main-header-height: 60px;
+}
+
+.header-section{
+    height: var(--main-header-height);
+    text-align: center;
+    background-color: #f3f3f3;
+}
+
+.header-section-title{
+    line-height: var(--main-header-height);
+}
