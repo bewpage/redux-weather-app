@@ -14,7 +14,7 @@ class Chart extends Component {
     render() {
         return (
             <div style={{textAlign: 'center'}}>
-                <Sparklines svgHeight={120} svgWidth={180} data={this.props.data} >
+                <Sparklines svgHeight={120} svgWidth={250} data={this.props.data} >
                     <SparklinesCurve color={this.props.color} style={{strokeWidth: 2}}/>
                     <SparklinesReferenceLine type='avg'/>
                 </Sparklines>

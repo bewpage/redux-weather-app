@@ -6,15 +6,8 @@ import {
 } from '../constants';
 
 const removeById = (state, id) => {
-    const cityList = state.filter(city => {
-        console.log('city in function removeById', city.city.id);
-        console.log('city id from click in function removeById', id);
-        return city.city.id !== id
-    });
-    console.log('remove city', cityList);
-    console.log('remove city state', state);
-    console.log('remove city id', id);
-    return cityList;
+    return state.filter(city => city.city.id !== id);
+
 };
 
 const setInitialState = {
@@ -45,12 +38,10 @@ const searchWeather = (state = setInitialState, action) => {
               fetchWeatherSearchPending: false
           };
       case REMOVE_CITY:
-          const test = removeById(state.data, action.cityId);
-          console.log('remove city reducer', test);
-          console.log('state city reducer', state);
+          const cityData = removeById(state.data, action.cityId);
           return{
               ...state,
-              data: [...test]
+              data: [...cityData]
           };
       default:
           return state;

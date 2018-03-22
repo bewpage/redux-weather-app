@@ -18,7 +18,7 @@ class WeatherList extends Component {
 
     renderWeather = (cityData) => {
         const { city } = cityData;
-        console.log('city data', cityData);
+        // console.log('city data', cityData);
         const temps = cityData.list.map(weather => weather.main.temp);
         const pressure = cityData.list.map(weather => weather.main.pressure);
         const windSpeed = cityData.list.map(weather => weather.wind.speed);
@@ -31,13 +31,13 @@ class WeatherList extends Component {
                     <div className='city-name-remove'
                          onClick={() => this.removeCity(city.id)}
                     >
-                        <i className='fas fa-trash-alt'></i>
+                        <i className='city-name-remove-icon fas fa-trash-alt'></i>
                     </div>
                     <div className='city-name-title'>{city.name}</div>
                 </td>
                 <td><Chart data={temps} color='blue' units='&#176;C'/></td>
-                <td><Chart data={pressure} color='blue' units='hPa'/></td>
-                <td><Chart data={windSpeed} color='blue' units='m/s'/></td>
+                <td><Chart data={pressure} color='green' units='hPa'/></td>
+                <td><Chart data={windSpeed} color='black' units='m/s'/></td>
             </tr>
         )
     };
@@ -46,7 +46,7 @@ class WeatherList extends Component {
         // console.log('weather list props', this.props);
         return (
             <div>
-                <table className='table table-hover'>
+                <table className='table'>
                     <thead>
                     <tr>
                         <th scope='col'>City</th>

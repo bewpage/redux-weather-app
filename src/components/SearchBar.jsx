@@ -13,11 +13,6 @@ class SearchBar extends Component{
         }
     }
 
-    componentWillReceiveProps(nextProps){
-        // console.log('props in search components', this.props);
-        // console.log('props in search components', nextProps);
-    }
-
     validate = (value) => {
         return {
             text: value.length === 0
@@ -50,7 +45,7 @@ class SearchBar extends Component{
                         <div className='input-group mb-3'>
                             <input type="text"
                                    className={textInputValidation ? 'form-control error' : 'form-control'}
-                                   placeholder='Search place'
+                                   placeholder='Search city forecast eg. London, UK'
                                    value={this.state.search}
                                    onChange={event => this.handlerAnyInputChange(event, 'search')}
                             />
@@ -70,13 +65,6 @@ class SearchBar extends Component{
     }
 
 }
-
-const mapStateToProps = (state) => {
-    // console.log('state in search redux', state);
-    return {
-        searchWeather: state.searchWeather
-    };
-};
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
