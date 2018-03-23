@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { isEmpty } from 'lodash';
+import moment from 'moment';
 import Chart from "./Chart";
+import Rechart from './Rechart';
+import GoogleMap from './GoogleMap';
 import { deleteCity } from "../actions/action_remove_city";
 
 import './WeatherList.css';
@@ -11,17 +14,30 @@ import './WeatherList.css';
 class WeatherList extends Component {
 
     removeCity(cityId){
-        console.log('city to remove', cityId);
+        // console.log('city to remove', cityId);
         this.props.deleteCity(cityId);
     }
 
 
     renderWeather = (cityData) => {
         const { city } = cityData;
+
         // console.log('city data', cityData);
+        // data for react chart library - for test purpose
+        const timeStamp = cityData.list.map(item => {
+            const ts = moment.unix(item.dt);
+            const windSpeed = item.wind.speed;
+            return {
+                name: ts._d,
+                value: windSpeed
+            };
+        });
+        const { lat, lon } = cityData.city.coord;
         const temps = cityData.list.map(weather => weather.main.temp);
         const pressure = cityData.list.map(weather => weather.main.pressure);
         const windSpeed = cityData.list.map(weather => weather.wind.speed);
+
+        // console.log('moment time stamp', timeStamp);
         // console.log('test temp', temps);
         // console.log('test pressure', pressure);
         // console.log('test windSpeed', windSpeed);
@@ -33,11 +49,13 @@ class WeatherList extends Component {
                     >
                         <i className='city-name-remove-icon fas fa-trash-alt'></i>
                     </div>
-                    <div className='city-name-title'>{city.name}</div>
+                    {/*<div className='city-name-title'>{city.name}</div>*/}
+                    <GoogleMap defaultZoom={12} lat={lat} lon={lon}/>
                 </td>
                 <td><Chart data={temps} color='blue' units='&#176;C'/></td>
                 <td><Chart data={pressure} color='green' units='hPa'/></td>
                 <td><Chart data={windSpeed} color='black' units='m/s'/></td>
+                {/*<td><Rechart data={timeStamp} units='&#176;C'/></td>*/}
             </tr>
         )
     };
@@ -46,13 +64,13 @@ class WeatherList extends Component {
         // console.log('weather list props', this.props);
         return (
             <div>
-                <table className='table'>
+                <table className='table table-hover'>
                     <thead>
-                    <tr>
+                    <tr className=''>
                         <th scope='col'>City</th>
-                        <th scope='col'>Temperature (&#176;C)</th>
-                        <th scope='col'>Pressure (hPa)</th>
-                        <th scope='col'>Wind speed (m/s)</th>
+                        <th className='thead-title' scope='col'>Temperature (&#176;C)</th>
+                        <th className='thead-title' scope='col'>Pressure (hPa)</th>
+                        <th className='thead-title' scope='col'>Wind speed (m/s)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,7 +83,7 @@ class WeatherList extends Component {
 }
 
 const mapStateToProps = ({ searchWeather }, state) => {
-    // console.log('state in weather list', state);
+    // console.log('state in weather list', searchWeather);
     return{
         searchWeather
     }

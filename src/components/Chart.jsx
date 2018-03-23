@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import { round, sum } from 'lodash';
 import { Sparklines, SparklinesCurve, SparklinesReferenceLine } from 'react-sparklines';
 
 import './Chart.css';
@@ -8,7 +8,7 @@ import './Chart.css';
 class Chart extends Component {
 
     average = (data) => {
-       return _.round(_.sum(data)/data.length);
+       return round(sum(data)/data.length);
     };
 
     render() {

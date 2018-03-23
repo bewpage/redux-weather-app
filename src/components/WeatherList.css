@@ -1,5 +1,10 @@
-.city-name{
+.thead-title{
+    text-align: center;
+}
 
+.city-name{
+    display: flex;
+    flex-direction: column;
 }
 
 .city-name-title{
@@ -11,9 +16,10 @@
 }
 
 .city-name-remove-icon{
-    top: 100px;
-    left: 70%;
     position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
 }
 
 .city-name-remove-icon:hover{
@@ -38,4 +44,9 @@
     40%, 60% {
         transform: translate3d(2px, 0, 0);
     }
+}
+
+div.google-map {
+    height: 120px;
+    width: 150px;
 }
