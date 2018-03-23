@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { isEmpty } from 'lodash';
-import moment from 'moment';
+// import moment from 'moment';
 import Chart from "./Chart";
-import Rechart from './Rechart';
+// import Rechart from './Rechart';
 import GoogleMap from './GoogleMap';
 import { deleteCity } from "../actions/action_remove_city";
 
@@ -24,14 +24,14 @@ class WeatherList extends Component {
 
         // console.log('city data', cityData);
         // data for react chart library - for test purpose
-        const timeStamp = cityData.list.map(item => {
-            const ts = moment.unix(item.dt);
-            const windSpeed = item.wind.speed;
-            return {
-                name: ts._d,
-                value: windSpeed
-            };
-        });
+        // const timeStamp = cityData.list.map(item => {
+        //     const ts = moment.unix(item.dt);
+        //     const windSpeed = item.wind.speed;
+        //     return {
+        //         name: ts._d,
+        //         value: windSpeed
+        //     };
+        // });
         const { lat, lon } = cityData.city.coord;
         const temps = cityData.list.map(weather => weather.main.temp);
         const pressure = cityData.list.map(weather => weather.main.pressure);
