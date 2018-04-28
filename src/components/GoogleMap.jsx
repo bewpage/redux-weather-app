@@ -15,7 +15,7 @@ class GoogleMap extends Component{
 
     render(){
         return (
-            <div className='google-map' ref='map' />
+            <div className='google-map' ref='map'/>
         )
     }
 }
